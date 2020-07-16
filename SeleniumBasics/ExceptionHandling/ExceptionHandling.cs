@@ -2,6 +2,7 @@
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
 using System;
+using System.Threading;
 
 namespace SeleniumBasics.ExceptionHandling
 {
@@ -26,6 +27,24 @@ namespace SeleniumBasics.ExceptionHandling
             string finishText = finishElement.Text;//after visibility of element get text of the element
             Assert.AreEqual(finishText, "Hello World!");//veri
             System.Console.WriteLine(finishText);
+        }
+
+        [Test]
+        public void TimeOutTest()
+        {
+            IWebElement finishElement = driver.FindElement(By.Id("finish"));
+            WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));//wait for 2 sec
+            try
+            {
+                wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.VisibilityOfAllElementsLocatedBy(By.Id("finish")));//wait until visibility of finish element
+            }
+            catch (TimeoutException exception)
+            {
+               Console.WriteLine("Exception: " + exception.Message);//if element is not visible  catch exception and print it
+                Thread.Sleep(3000);
+            }
+            String finishText = finishElement.Text; //element is visible the get its text
+            Assert.True(finishText.Contains("Hello World!"));//verify the text
         }
 
         [TearDown]
