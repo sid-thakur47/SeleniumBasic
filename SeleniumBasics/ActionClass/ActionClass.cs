@@ -1,28 +1,21 @@
 ﻿using NUnit.Framework;
 using OpenQA.Selenium;
-using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Interactions;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading;
-using System.Threading.Tasks;
 
 namespace SeleniumBasics.ActionClass
 {
-   public class ActionClass
+    public class ActionClass : Base
     {
-        public 
-        Actions action; 
-        IWebDriver driver = new ChromeDriver();
+        public Actions action;
 
         [OneTimeSetUp]
         public void SetUp() 
         {
+            Initialize();
             action = new Actions(driver);
-            driver.Manage().Window.Maximize();
-            driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10);
+          
         }
 
         [Test]
@@ -105,6 +98,7 @@ namespace SeleniumBasics.ActionClass
             driver.Url = "https://www.browserstack.com/automate";
             Thread.Sleep(2000);
             action.SendKeys(driver.FindElement(By.XPath("//a[@class='btn-primary btn-lg col-md-3']")), Keys.Enter).Build().Perform();
+            Thread.Sleep(5000);
             //here user will send key values like enter to web elements on click botton
 
         }
