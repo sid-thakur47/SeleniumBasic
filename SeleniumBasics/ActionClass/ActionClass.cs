@@ -18,7 +18,7 @@ namespace SeleniumBasics.ActionClass
         IWebDriver driver = new ChromeDriver();
 
         [OneTimeSetUp]
-        public void SetUp()
+        public void SetUp() 
         {
            
             action = new Actions(driver);
