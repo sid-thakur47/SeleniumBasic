@@ -339,9 +339,19 @@ ASALocalRun/
 # BeatPulse healthcheck temp database
 healthchecksdb
 ./packages
-.gitignore
-.sln/
-.config/
+*.gitignore
+*.sln/
+*.config/
 program.cs/
-.csproj/
-.properties/
+*.csproj/
+Properties/
+bin/
+obj/
+/SeleniumBasics/Properties
+/SeleniumBasics/App.config
+/SeleniumBasics/packages.config
+/SeleniumBasics/Program.cs
+/SeleniumBasics/*.csproj
+/SeleniumBasics/Properties
+/SeleniumBasics.sln
+/packages
