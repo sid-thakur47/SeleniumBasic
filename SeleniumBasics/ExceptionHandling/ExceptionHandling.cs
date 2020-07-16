@@ -47,6 +47,19 @@ namespace SeleniumBasics.ExceptionHandling
             Assert.True(finishText.Contains("Hello World!"));//verify the text
         }
 
+        [Test]
+        public void NoSuchElementTest()
+        { 
+            driver.Url="http://the-internet.herokuapp.com/dynamic_loading/2";
+            IWebElement startButton = driver.FindElement(By.XPath("//div[@id='start']//button"));
+            startButton.Click();
+            WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(20));
+            //wait unit element text is located at location and verify the text
+            Assert.True(
+                    wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.TextToBePresentInElementLocated(By.Id("finish"), "Hello World!")),
+                    "Couldn't verify 'Hello World!'");
+        }
+
         [TearDown]
         public void Quit()
         {
