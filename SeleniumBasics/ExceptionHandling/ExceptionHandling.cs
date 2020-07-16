@@ -60,6 +60,27 @@ namespace SeleniumBasics.ExceptionHandling
                     "Couldn't verify 'Hello World!'");
         }
 
+        [Test]
+        public void StaleElement()
+        {
+            driver.Url="http://the-internet.herokuapp.com/dynamic_controls";
+            IWebElement checkBox = driver.FindElement(By.Id("checkbox"));
+            IWebElement removeButton = driver.FindElement(By.XPath("//button[contains(text(),'Remove')]"));
+            removeButton.Click();
+            WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
+            Assert.True(wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.StalenessOf(checkBox)),//wait until element disappears
+                    "Checkbox is still visible, but shouldn't be");
+            IWebElement addButton = driver.FindElement(By.XPath("//button[contains(text(),'Add')]"));
+            addButton.Click();//click on add button
+            //verify the element
+            wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.VisibilityOfAllElementsLocatedBy(By.Id("checkbox")));
+            IWebElement checkbox = driver.FindElement(By.Id("checkbox"));
+            checkbox.Click();
+            Thread.Sleep(5000);
+            IWebElement message = driver.FindElement(By.XPath("//p[@id='message']"));
+            Assert.AreEqual(message.Text,"It's back!");
+        }
+
         [TearDown]
         public void Quit()
         {
