@@ -20,13 +20,10 @@ namespace SeleniumBasics.ActionClass
         [OneTimeSetUp]
         public void SetUp() 
         {
-           
             action = new Actions(driver);
             driver.Manage().Window.Maximize();
             driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10);
-
         }
-
 
         [Test]
         public void MouseOverTest()
