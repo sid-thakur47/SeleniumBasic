@@ -54,5 +54,11 @@ namespace SeleniumBasics.BrokenLinks
                 }
             }
         }
+
+        [TearDown]
+        public void Quit()
+        {
+            driver.Quit();
+        }
     }
 }

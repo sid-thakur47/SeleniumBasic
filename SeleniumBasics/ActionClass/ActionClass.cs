@@ -10,7 +10,7 @@ namespace SeleniumBasics.ActionClass
     {
         public Actions action;
 
-        [OneTimeSetUp]
+        [SetUp]
         public void SetUp() 
         {
             Initialize();
@@ -103,8 +103,8 @@ namespace SeleniumBasics.ActionClass
 
         }
 
-        [OneTimeTearDown]
-        public void ExtentClose()
+        [TearDown]
+        public void Quit()
         {
             driver.Quit();
         }
