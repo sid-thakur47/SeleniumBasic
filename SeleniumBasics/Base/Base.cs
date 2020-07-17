@@ -17,7 +17,6 @@ namespace SeleniumBasics
             options.AddArgument("--disable-notifications");
             driver = new ChromeDriver(options);
             driver.Manage().Window.Maximize();
-
         }
     }
 }
