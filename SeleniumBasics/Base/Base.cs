@@ -10,9 +10,11 @@ namespace SeleniumBasics
 {
     public class Base
     {
-       public IWebDriver driver = new ChromeDriver();
+        public static IWebDriver driver;
+
         public void Initialize()
         {
+            driver = new ChromeDriver();
             ChromeOptions options = new ChromeOptions();
             options.AddArgument("--disable-notifications");
             driver = new ChromeDriver(options);
