@@ -26,12 +26,6 @@ namespace SeleniumBasics.NewsHeading
                 Console.WriteLine(text);
             }
 
-            var mostRepeatedWord = mylist.SelectMany(x => x.Split(new[] { " " },
-                                             StringSplitOptions.RemoveEmptyEntries))
-                             .GroupBy(x => x).OrderByDescending(x => x.Count())
-                             .Select(x => x.Key).FirstOrDefault();
-            Console.WriteLine("Most Repeted Word" + "---->" + mostRepeatedWord);
-
 
             IList<IWebElement> point = driver.FindElements(By.ClassName("score"));
             List<int> pointlist = new List<int>();
@@ -55,7 +49,8 @@ namespace SeleniumBasics.NewsHeading
                 Console.WriteLine(code);
 
             }
-            Console.WriteLine("max points and headlines" + "-->" + dict.Keys.Max() + "----->" + dict.Values.Max());
+            string min = dict.OrderByDescending(x => x.Value).First().Key;
+            Console.WriteLine(min + "------->" + dict.Values.Max());
         }
     }
  }
